@@ -59,17 +59,18 @@ public class MonkeyTypewriter {
 
         // Print out the copied versions here.
 
-        System.out.println(monkey1.copied);
-        System.out.println(monkey2.copied);
-        System.out.println(monkey3.copied);
-        System.out.println(monkey4.copied);
-        System.out.println(monkey5.copied);
+        UnsafeCopier uc = new UnsafeCopier(introduction);
+        System.out.println(uc.copied);
+//        System.out.println(monkey2.copied);
+//        System.out.println(monkey3.copied);
+//        System.out.println(monkey4.copied);
+//        System.out.println(monkey5.copied);
 
-        System.out.println(monkey6.copied);
-        System.out.println(monkey7.copied);
-        System.out.println(monkey8.copied);
-        System.out.println(monkey9.copied);
-        System.out.println(monkey10.copied);
+//        System.out.println(monkey6.copied);
+//        System.out.println(monkey7.copied);
+//        System.out.println(monkey8.copied);
+//        System.out.println(monkey9.copied);
+//        System.out.println(monkey10.copied);
 
 
     }
