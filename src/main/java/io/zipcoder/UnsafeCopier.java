@@ -10,17 +10,27 @@ public class UnsafeCopier extends Copier {
     }
 
     public void run() {
-            try {
-                while (stringIterator.hasNext()){
-                    Thread.sleep(500);
-                    if (stringIterator.hasNext()) {
-                    System.out.println(stringIterator.next());
-                    copied += " " + stringIterator.next();
-                }
-                }
-        } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+////            try {
+//        while (stringIterator.hasNext()) {
+////                    Thread.sleep(500);
+////                    System.out.println(stringIterator.next());
+//            copied = copied +  " " + stringIterator.next();
+////                }
+////
+////        } catch (InterruptedException e) {
+////                throw new RuntimeException(e);
+////            }
+//        }
+        try {
+            while (stringIterator.hasNext()){
+                Thread.sleep(500);
+                copied = copied + " " + stringIterator.next();
+                System.out.println(copied);
             }
+
+        } catch (InterruptedException e ){
+            throw new RuntimeException(e);
+        }
     }
-    }
+}
 

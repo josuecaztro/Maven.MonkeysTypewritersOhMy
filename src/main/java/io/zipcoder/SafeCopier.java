@@ -13,13 +13,17 @@ public class SafeCopier extends Copier {
     public SafeCopier(String toCopy) { super(toCopy); }
 
     public void run() {
-        lock.lock();
         try {
-        copied = copied + stringIterator.next();
-        while (stringIterator.hasNext()) {
-            copied = copied + " " + stringIterator.next();
-        }} finally {
-            lock.unlock();
+            while (stringIterator.hasNext()) {
+                Thread.sleep(1000);
+                if (stringIterator.hasNext()) {
+                    copied = copied + this.stringIterator.next() + " ";
+                }
             }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
+    }
+
+
     }

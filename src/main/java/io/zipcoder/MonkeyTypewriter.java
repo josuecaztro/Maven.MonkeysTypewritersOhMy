@@ -2,6 +2,9 @@ package io.zipcoder;
 
 public class MonkeyTypewriter {
     public static void main(String[] args) {
+
+
+
         String introduction = "It was the best of times,\n" +
                 "it was the blurst of times,\n" +
                 "it was the age of wisdom,\n" +
@@ -23,27 +26,44 @@ public class MonkeyTypewriter {
         // Do all of the Monkey / Thread building here
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities.
-        UnsafeCopier monkey1 = new UnsafeCopier(introduction);
-        monkey1.run();
-        UnsafeCopier monkey2 = new UnsafeCopier(introduction);
-        monkey2.run();
-        UnsafeCopier monkey3 = new UnsafeCopier(introduction);
-        monkey3.run();
-        UnsafeCopier monkey4 = new UnsafeCopier(introduction);
-        monkey4.run();
-        UnsafeCopier monkey5 = new UnsafeCopier(introduction);
-        monkey5.run();
 
-        SafeCopier monkey6 = new SafeCopier(introduction);
-        monkey6.run();
-        SafeCopier monkey7 = new SafeCopier(introduction);
-        monkey7.run();
-        SafeCopier monkey8 = new SafeCopier(introduction);
-        monkey8.run();
-        SafeCopier monkey9 = new SafeCopier(introduction);
-        monkey9.run();
-        SafeCopier monkey10 = new SafeCopier(introduction);
-        monkey10.run();
+        UnsafeCopier unsafeCopier = new UnsafeCopier(introduction);
+        SafeCopier safeCopier = new SafeCopier(introduction);
+
+        Thread[] threadArray = new Thread[5];
+        Thread[] threadArray2 = new Thread[5];
+
+
+
+        for (int i = 0; i < threadArray.length; i++) {
+            threadArray[i] = new Thread(unsafeCopier);
+            threadArray2[i] = new Thread(safeCopier);
+        }
+        for (Thread thread : threadArray) {
+            thread.start();
+        }
+        for (Thread thread : threadArray) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println("UnsafeCopier class \n" + unsafeCopier.copied);
+
+        for (Thread thread : threadArray2) {
+            thread.start();
+        }
+        for (Thread thread : threadArray2) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println("\nSafeCopier class \n" + safeCopier.copied);
+
+
 
 
 
@@ -59,18 +79,10 @@ public class MonkeyTypewriter {
 
         // Print out the copied versions here.
 
-        UnsafeCopier uc = new UnsafeCopier(introduction);
-        System.out.println(uc.copied);
-//        System.out.println(monkey2.copied);
-//        System.out.println(monkey3.copied);
-//        System.out.println(monkey4.copied);
-//        System.out.println(monkey5.copied);
+//        System.out.println(unsafeCopier.copied);
+        //System.out.println(safeCopier.copied);
 
-//        System.out.println(monkey6.copied);
-//        System.out.println(monkey7.copied);
-//        System.out.println(monkey8.copied);
-//        System.out.println(monkey9.copied);
-//        System.out.println(monkey10.copied);
+
 
 
     }
